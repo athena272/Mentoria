@@ -1,0 +1,55 @@
+﻿@model IEnumerable<Check2.Models.Caes>
+    
+    @{
+        ViewBag.Title = "Index";
+    }
+
+    <h2>Index</h2>
+
+
+    <p>
+        @Html.ActionLink("Create New", "Create")
+
+        @using (Html.BeginForm("index", "caes", FormMethod.Get))
+        {
+            @Html.DropDownList("search", new SelectList(ViewBag.Raca_index, "IdRaca", "Nome_raca"), "pesquise a raça do pet", new { htmlAttributes = new { @class = "form-control" } })
+
+            <input type="submit" value="search">
+        }
+
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome_raca)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome_cao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome_dono)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome_raca)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome_cao)
+                </td>
+                <th>
+                    @Html.DisplayFor(modelItem => item.Nome_dono)
+                </th>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Idcao }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.Idcao }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Idcao })
+                </td>
+            </tr>
+        }
+
+    </table>
